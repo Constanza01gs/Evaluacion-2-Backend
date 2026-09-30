@@ -1,0 +1,380 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+Registro | Plataforma EdTech
+{% endblock %}
+
+
+{% block content %}
+
+<!--
+============================================================
+REGISTRO DE ESTUDIANTES - EDTECH
+============================================================
+
+Esta página permite crear una nueva cuenta de estudiante.
+
+La lógica del registro se mantiene en registro.js.
+Este template define la estructura visual del formulario.
+============================================================
+-->
+
+
+<section class="pagina-autenticacion">
+
+    <div class="autenticacion-contenedor registro-contenedor">
+
+
+        <!-- ==================================================
+        PRESENTACIÓN
+        =================================================== -->
+
+        <div class="autenticacion-presentacion">
+
+            <div class="autenticacion-presentacion-contenido">
+
+                <span class="hero-etiqueta">
+                    PLATAFORMA EDTECH
+                </span>
+
+
+                <h1>
+                    Comienza tu
+                    <span>experiencia académica</span>
+                </h1>
+
+
+                <p>
+                    Crea tu cuenta de estudiante para explorar
+                    la oferta académica y gestionar tus
+                    matrículas desde la plataforma.
+                </p>
+
+
+                <div class="autenticacion-beneficios">
+
+                    <div class="autenticacion-beneficio">
+
+                        <span class="beneficio-icono">
+                            ✓
+                        </span>
+
+                        <div>
+                            <strong>
+                                Explora la oferta académica
+                            </strong>
+
+                            <span>
+                                Encuentra cursos organizados
+                                por áreas de aprendizaje.
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="autenticacion-beneficio">
+
+                        <span class="beneficio-icono">
+                            ✓
+                        </span>
+
+                        <div>
+                            <strong>
+                                Crea tu carro de matrícula
+                            </strong>
+
+                            <span>
+                                Selecciona los cursos que
+                                deseas matricular.
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="autenticacion-beneficio">
+
+                        <span class="beneficio-icono">
+                            ✓
+                        </span>
+
+                        <div>
+                            <strong>
+                                Gestiona tus matrículas
+                            </strong>
+
+                            <span>
+                                Consulta el estado de tus
+                                matrículas desde tu cuenta.
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Decoración -->
+
+            <div
+                class="autenticacion-decoracion"
+                aria-hidden="true"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+        </div>
+
+
+
+        <!-- ==================================================
+        FORMULARIO
+        =================================================== -->
+
+        <div class="autenticacion-formulario registro-formulario">
+
+            <div class="autenticacion-formulario-contenido registro-formulario-contenido">
+
+                <div class="autenticacion-encabezado">
+
+                    <span class="hero-etiqueta">
+                        NUEVA CUENTA
+                    </span>
+
+
+                    <h2>
+                        Crear cuenta
+                    </h2>
+
+
+                    <p>
+                        Completa tus datos para registrarte
+                        como estudiante.
+                    </p>
+
+                </div>
+
+
+
+                <!-- ==========================================
+                MENSAJES
+                =========================================== -->
+
+                <div
+                    id="mensaje-registro"
+                    class="d-none"
+                    role="alert"
+                >
+                </div>
+
+
+
+                <!-- ==========================================
+                FORMULARIO DE REGISTRO
+                =========================================== -->
+
+                <form id="form-registro">
+
+                    <div class="row g-3">
+
+
+                        <!-- Nombre -->
+
+                        <div class="col-md-6">
+
+                            <label
+                                for="nombre"
+                                class="form-label"
+                            >
+                                Nombre
+                            </label>
+
+                            <input
+                                type="text"
+                                id="nombre"
+                                class="form-control"
+                                placeholder="Tu nombre"
+                                autocomplete="given-name"
+                                required
+                            >
+
+                        </div>
+
+
+
+                        <!-- Apellido -->
+
+                        <div class="col-md-6">
+
+                            <label
+                                for="apellido"
+                                class="form-label"
+                            >
+                                Apellido
+                            </label>
+
+                            <input
+                                type="text"
+                                id="apellido"
+                                class="form-control"
+                                placeholder="Tu apellido"
+                                autocomplete="family-name"
+                                required
+                            >
+
+                        </div>
+
+
+
+                        <!-- Usuario -->
+
+                        <div class="col-12">
+
+                            <label
+                                for="username"
+                                class="form-label"
+                            >
+                                Nombre de usuario
+                            </label>
+
+                            <input
+                                type="text"
+                                id="username"
+                                class="form-control"
+                                placeholder="Elige un nombre de usuario"
+                                autocomplete="username"
+                                required
+                            >
+
+                        </div>
+
+
+
+                        <!-- Correo -->
+
+                        <div class="col-12">
+
+                            <label
+                                for="email"
+                                class="form-label"
+                            >
+                                Correo electrónico
+                            </label>
+
+                            <input
+                                type="email"
+                                id="email"
+                                class="form-control"
+                                placeholder="nombre@correo.cl"
+                                autocomplete="email"
+                                required
+                            >
+
+                        </div>
+
+
+
+                        <!-- Contraseña -->
+
+                        <div class="col-md-6">
+
+                            <label
+                                for="password"
+                                class="form-label"
+                            >
+                                Contraseña
+                            </label>
+
+                            <input
+                                type="password"
+                                id="password"
+                                class="form-control"
+                                placeholder="Mínimo 8 caracteres"
+                                minlength="8"
+                                autocomplete="new-password"
+                                required
+                            >
+
+                        </div>
+
+
+
+                        <!-- Confirmar contraseña -->
+
+                        <div class="col-md-6">
+
+                            <label
+                                for="password-confirmacion"
+                                class="form-label"
+                            >
+                                Confirmar contraseña
+                            </label>
+
+                            <input
+                                type="password"
+                                id="password-confirmacion"
+                                class="form-control"
+                                placeholder="Repite tu contraseña"
+                                minlength="8"
+                                autocomplete="new-password"
+                                required
+                            >
+
+                        </div>
+
+                    </div>
+
+
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary w-100 mt-4"
+                        id="boton-registro"
+                    >
+                        Crear cuenta
+                    </button>
+
+                </form>
+
+
+
+                <!-- ==========================================
+                ACCESO
+                =========================================== -->
+
+                <div class="autenticacion-registro">
+
+                    <span>
+                        ¿Ya tienes una cuenta?
+                    </span>
+
+                    <a href="/login/">
+                        Iniciar sesión
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
+
+
+
+{% block scripts %}
+
+<script src="{% static 'js/registro.js' %}"></script>
+
+{% endblock %}

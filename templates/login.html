@@ -1,0 +1,273 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+Iniciar sesión | Plataforma EdTech
+{% endblock %}
+
+
+{% block content %}
+
+<!--
+============================================================
+INICIO DE SESIÓN - EDTECH
+============================================================
+
+Esta página permite autenticar usuarios mediante JWT.
+
+La lógica de autenticación se mantiene en login.js.
+Este template define únicamente la estructura visual
+del acceso a la plataforma.
+============================================================
+-->
+
+
+<section class="pagina-autenticacion">
+
+    <div class="autenticacion-contenedor">
+
+
+        <!-- ==================================================
+        PRESENTACIÓN
+        =================================================== -->
+
+        <div class="autenticacion-presentacion">
+
+            <div class="autenticacion-presentacion-contenido">
+
+                <span class="hero-etiqueta">
+                    PLATAFORMA EDTECH
+                </span>
+
+
+                <h1>
+                    Continúa con tu
+                    <span>aprendizaje</span>
+                </h1>
+
+
+                <p>
+                    Accede a tu cuenta para gestionar tus cursos,
+                    matrículas y las funciones disponibles según
+                    tu perfil dentro de la plataforma.
+                </p>
+
+
+                <div class="autenticacion-beneficios">
+
+                    <div class="autenticacion-beneficio">
+
+                        <span class="beneficio-icono">
+                            ✓
+                        </span>
+
+                        <div>
+                            <strong>
+                                Catálogo académico
+                            </strong>
+
+                            <span>
+                                Explora cursos y áreas disponibles.
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="autenticacion-beneficio">
+
+                        <span class="beneficio-icono">
+                            ✓
+                        </span>
+
+                        <div>
+                            <strong>
+                                Matrículas organizadas
+                            </strong>
+
+                            <span>
+                                Consulta y administra tu proceso
+                                desde un solo lugar.
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="autenticacion-beneficio">
+
+                        <span class="beneficio-icono">
+                            ✓
+                        </span>
+
+                        <div>
+                            <strong>
+                                Acceso seguro
+                            </strong>
+
+                            <span>
+                                Las funciones privadas requieren
+                                autenticación.
+                            </span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- Decoración -->
+
+            <div
+                class="autenticacion-decoracion"
+                aria-hidden="true"
+            >
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+        </div>
+
+
+
+        <!-- ==================================================
+        FORMULARIO
+        =================================================== -->
+
+        <div class="autenticacion-formulario">
+
+            <div class="autenticacion-formulario-contenido">
+
+                <div class="autenticacion-encabezado">
+
+                    <span class="hero-etiqueta">
+                        ACCESO
+                    </span>
+
+
+                    <h2>
+                        Iniciar sesión
+                    </h2>
+
+
+                    <p>
+                        Ingresa tus datos para acceder
+                        a tu cuenta.
+                    </p>
+
+                </div>
+
+
+
+                <!-- ==========================================
+                MENSAJES
+                =========================================== -->
+
+                <div
+                    id="mensaje-login"
+                    class="d-none"
+                    role="alert"
+                >
+                </div>
+
+
+
+                <!-- ==========================================
+                FORMULARIO DE LOGIN
+                =========================================== -->
+
+                <form id="form-login">
+
+                    <div class="mb-3">
+
+                        <label
+                            for="username"
+                            class="form-label"
+                        >
+                            Nombre de usuario
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="username"
+                            class="form-control"
+                            placeholder="Ingresa tu usuario"
+                            autocomplete="username"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="mb-4">
+
+                        <label
+                            for="password"
+                            class="form-label"
+                        >
+                            Contraseña
+                        </label>
+
+
+                        <input
+                            type="password"
+                            id="password"
+                            class="form-control"
+                            placeholder="Ingresa tu contraseña"
+                            autocomplete="current-password"
+                            required
+                        >
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary w-100"
+                        id="boton-login"
+                    >
+                        Iniciar sesión
+                    </button>
+
+                </form>
+
+
+
+                <!-- ==========================================
+                REGISTRO
+                =========================================== -->
+
+                <div class="autenticacion-registro">
+
+                    <span>
+                        ¿No tienes una cuenta?
+                    </span>
+
+                    <a href="/registro/">
+                        Crear cuenta
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
+
+
+
+{% block scripts %}
+
+<script src="{% static 'js/login.js' %}"></script>
+
+{% endblock %}

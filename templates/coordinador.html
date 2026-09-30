@@ -1,0 +1,535 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Coordinador | Plataforma EdTech
+{% endblock %}
+
+{% block content %}
+
+<!--
+============================================================
+PANEL DEL COORDINADOR - EDTECH
+============================================================
+
+Panel destinado al Coordinador Académico.
+
+Permite administrar:
+1. Áreas académicas.
+2. Cursos.
+3. Matrículas.
+4. Revisión de pagos.
+
+La autorización real se controla mediante JWT y permisos
+desde el backend.
+============================================================
+-->
+
+<div class="coordinador-layout">
+
+    <!-- ======================================================
+    BARRA LATERAL
+    ======================================================= -->
+    <aside class="coordinador-sidebar">
+
+        <div>
+            <div class="coordinador-marca">
+                <div class="coordinador-logo">E</div>
+
+                <div>
+                    <strong>EdTech</strong>
+                    <span>Coordinación</span>
+                </div>
+            </div>
+
+            <div class="coordinador-separador"></div>
+
+            <p class="coordinador-menu-titulo">GESTIÓN</p>
+
+            <button
+                type="button"
+                class="btn btn-primary coordinador-menu-item"
+                id="tab-areas"
+            >
+                <span class="coordinador-menu-icono">▣</span>
+                Áreas
+            </button>
+
+            <button
+                type="button"
+                class="btn btn-outline-edtech coordinador-menu-item"
+                id="tab-cursos"
+            >
+                <span class="coordinador-menu-icono">▤</span>
+                Cursos
+            </button>
+
+            <button
+                type="button"
+                class="btn btn-outline-edtech coordinador-menu-item"
+                id="tab-matriculas"
+            >
+                <span class="coordinador-menu-icono">▧</span>
+                Matrículas
+            </button>
+        </div>
+
+        <div class="coordinador-sidebar-pie">
+            <strong>Plataforma EdTech</strong>
+            <span>Coordinación Académica</span>
+        </div>
+
+    </aside>
+
+    <!-- ======================================================
+    CONTENIDO PRINCIPAL
+    ======================================================= -->
+    <main class="coordinador-contenido">
+
+        <section class="coordinador-encabezado">
+            <span class="hero-etiqueta">COORDINACIÓN ACADÉMICA</span>
+
+            <h1>Panel del Coordinador</h1>
+
+            <p>
+                Administra la oferta académica, las matrículas
+                y los pagos enviados por los estudiantes.
+            </p>
+        </section>
+
+        <div id="mensaje-coordinador" class="d-none"></div>
+
+        <!-- ==================================================
+        GESTIÓN DE ÁREAS
+        =================================================== -->
+        <section id="seccion-areas">
+
+            <div class="titulo-seccion mb-4">
+                <h2>Gestión de Áreas</h2>
+                <p>
+                    Crea, modifica o inactiva las áreas
+                    de conocimiento disponibles.
+                </p>
+            </div>
+
+            <!-- FORMULARIO DE ÁREA -->
+            <div class="tarjeta-edtech coordinador-formulario-ancho mb-4">
+
+                <h5
+                    class="mb-4"
+                    id="titulo-formulario-area"
+                >
+                    Nueva Área
+                </h5>
+
+                <form id="form-area">
+
+                    <input
+                        type="hidden"
+                        id="area-id"
+                    >
+
+                    <div class="row g-4 align-items-start">
+
+                        <div class="col-lg-4">
+                            <label
+                                for="area-nombre"
+                                class="form-label"
+                            >
+                                Nombre
+                            </label>
+
+                            <input
+                                type="text"
+                                id="area-nombre"
+                                class="form-control"
+                                maxlength="100"
+                                required
+                            >
+                        </div>
+
+                        <div class="col-lg-8">
+                            <label
+                                for="area-descripcion"
+                                class="form-label"
+                            >
+                                Descripción
+                            </label>
+
+                            <textarea
+                                id="area-descripcion"
+                                class="form-control coordinador-textarea-area"
+                                rows="3"
+                            ></textarea>
+                        </div>
+
+                    </div>
+
+                    <div class="coordinador-form-acciones">
+                        <button
+                            type="button"
+                            class="btn btn-outline-edtech d-none"
+                            id="boton-cancelar-area"
+                        >
+                            Cancelar
+                        </button>
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary"
+                            id="boton-guardar-area"
+                        >
+                            Guardar Área
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+
+            <!-- TABLA DE ÁREAS -->
+            <div class="tarjeta-edtech coordinador-tabla-ancha">
+
+                <div class="table-responsive">
+                    <table class="table align-middle mb-0">
+
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Descripción</th>
+                                <th class="text-end">Acciones</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="tabla-areas">
+                            <tr>
+                                <td
+                                    colspan="3"
+                                    class="text-muted"
+                                >
+                                    Cargando áreas...
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ==================================================
+        GESTIÓN DE CURSOS
+        =================================================== -->
+        <section
+            id="seccion-cursos"
+            class="d-none"
+        >
+
+            <div class="titulo-seccion mb-4">
+                <h2>Gestión de Cursos</h2>
+                <p>
+                    Crea, modifica o inactiva los cursos
+                    disponibles en la plataforma.
+                </p>
+            </div>
+
+            <!-- FORMULARIO DE CURSO -->
+            <div class="tarjeta-edtech coordinador-formulario-ancho mb-4">
+
+                <h5
+                    class="mb-4"
+                    id="titulo-formulario-curso"
+                >
+                    Nuevo Curso
+                </h5>
+
+                <form id="form-curso">
+
+                    <input
+                        type="hidden"
+                        id="curso-id"
+                    >
+
+                    <div class="row g-4">
+
+                        <div class="col-lg-4 col-md-6">
+                            <label
+                                for="curso-area"
+                                class="form-label"
+                            >
+                                Área
+                            </label>
+
+                            <select
+                                id="curso-area"
+                                class="form-select"
+                                required
+                            >
+                                <option value="">
+                                    Selecciona un área
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="col-lg-5 col-md-6">
+                            <label
+                                for="curso-titulo"
+                                class="form-label"
+                            >
+                                Título
+                            </label>
+
+                            <input
+                                type="text"
+                                id="curso-titulo"
+                                class="form-control"
+                                maxlength="150"
+                                required
+                            >
+                        </div>
+
+                        <div class="col-lg-3 col-md-6">
+                            <label
+                                for="curso-costo"
+                                class="form-label"
+                            >
+                                Costo de matrícula
+                            </label>
+
+                            <input
+                                type="number"
+                                id="curso-costo"
+                                class="form-control"
+                                min="0"
+                                step="0.01"
+                                required
+                            >
+                        </div>
+
+                        <div class="col-lg-3 col-md-6">
+                            <label
+                                for="curso-fecha-inicio"
+                                class="form-label"
+                            >
+                                Fecha inicio
+                            </label>
+
+                            <input
+                                type="date"
+                                id="curso-fecha-inicio"
+                                class="form-control"
+                                required
+                            >
+                        </div>
+
+                        <div class="col-lg-3 col-md-6">
+                            <label
+                                for="curso-fecha-termino"
+                                class="form-label"
+                            >
+                                Fecha término
+                            </label>
+
+                            <input
+                                type="date"
+                                id="curso-fecha-termino"
+                                class="form-control"
+                                required
+                            >
+                        </div>
+
+                        <div class="col-lg-2 col-md-6">
+                            <label
+                                for="curso-cupo-maximo"
+                                class="form-label"
+                            >
+                                Cupo máximo
+                            </label>
+
+                            <input
+                                type="number"
+                                id="curso-cupo-maximo"
+                                class="form-control"
+                                min="1"
+                                required
+                            >
+                        </div>
+
+                        <div class="col-lg-2 col-md-6">
+                            <label
+                                for="curso-cupos"
+                                class="form-label"
+                            >
+                                Cupos disponibles
+                            </label>
+
+                            <input
+                                type="number"
+                                id="curso-cupos"
+                                class="form-control"
+                                min="0"
+                                required
+                            >
+                        </div>
+
+                        <div class="col-lg-4">
+                            <label
+                                for="curso-descripcion"
+                                class="form-label"
+                            >
+                                Descripción
+                            </label>
+
+                            <textarea
+                                id="curso-descripcion"
+                                class="form-control coordinador-textarea-curso"
+                                rows="3"
+                                required
+                            ></textarea>
+                        </div>
+
+                    </div>
+
+                    <div class="coordinador-form-acciones">
+                        <button
+                            type="button"
+                            class="btn btn-outline-edtech d-none"
+                            id="boton-cancelar-curso"
+                        >
+                            Cancelar
+                        </button>
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary"
+                            id="boton-guardar-curso"
+                        >
+                            Guardar Curso
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+
+            <!-- TABLA DE CURSOS -->
+            <div class="tarjeta-edtech coordinador-tabla-ancha">
+
+                <div class="table-responsive">
+                    <table class="table align-middle mb-0">
+
+                        <thead>
+                            <tr>
+                                <th>Curso</th>
+                                <th>Área</th>
+                                <th>Costo</th>
+                                <th>Cupos</th>
+                                <th class="text-end">Acciones</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="tabla-cursos">
+                            <tr>
+                                <td
+                                    colspan="5"
+                                    class="text-muted"
+                                >
+                                    Cargando cursos...
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+
+            </div>
+
+        </section>
+
+        <!-- ==================================================
+        GESTIÓN DE MATRÍCULAS
+        =================================================== -->
+        <section
+            id="seccion-matriculas"
+            class="d-none"
+        >
+
+            <div class="titulo-seccion mb-4">
+                <h2>Gestión de Matrículas</h2>
+                <p>
+                    Revisa las matrículas, valida los pagos
+                    y administra su estado académico.
+                </p>
+            </div>
+
+            <div class="row g-4 mb-4">
+
+                <div class="col-md-4">
+                    <div class="tarjeta-edtech coordinador-resumen">
+                        <span>Total de matrículas</span>
+                        <strong id="total-matriculas">0</strong>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="tarjeta-edtech coordinador-resumen">
+                        <span>Pendientes</span>
+                        <strong id="total-pendientes">0</strong>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="tarjeta-edtech coordinador-resumen">
+                        <span>Pagadas</span>
+                        <strong id="total-pagadas">0</strong>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="tarjeta-edtech">
+
+                <div class="table-responsive">
+                    <table class="table align-middle mb-0">
+
+                        <thead>
+                            <tr>
+                                <th>N.º</th>
+                                <th>Estudiante</th>
+                                <th>Cursos</th>
+                                <th>Total</th>
+                                <th>Matrícula</th>
+                                <th>Pago</th>
+                                <th class="text-end">Acciones</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="tabla-matriculas">
+                            <tr>
+                                <td
+                                    colspan="7"
+                                    class="text-muted"
+                                >
+                                    Cargando matrículas...
+                                </td>
+                            </tr>
+                        </tbody>
+
+                    </table>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/coordinador.js' %}"></script>
+{% endblock %}

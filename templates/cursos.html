@@ -1,0 +1,240 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Cursos | Plataforma EdTech
+{% endblock %}
+
+{% block content %}
+
+<!--
+============================================================
+CATÁLOGO DE CURSOS - EDTECH
+============================================================
+
+Página pública para consultar los cursos y bootcamps activos.
+
+La oferta académica se obtiene desde la API y los filtros
+se aplican mediante django-filter.
+============================================================
+-->
+
+
+<!-- ========================================================
+HERO DEL CATÁLOGO
+========================================================= -->
+
+<section class="hero-catalogo mb-4">
+
+    <div class="row align-items-center g-4">
+
+        <div class="col-lg-7">
+
+            <span class="hero-etiqueta">
+                CURSOS
+            </span>
+
+            <h1>
+                Explora
+                <span>nuestros cursos</span>
+            </h1>
+
+            <p>
+                Desarrolla nuevas habilidades con cursos y
+                bootcamps organizados en distintas áreas
+                de conocimiento.
+            </p>
+
+        </div>
+
+
+        <div class="col-lg-5 d-none d-lg-flex justify-content-center">
+
+            <div class="cursos-hero-imagen">
+
+                <img
+                    src="{% static 'img/hero-cursos.png' %}"
+                    alt="Explora los cursos disponibles"
+                >
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ========================================================
+FILTROS SUPERIORES
+========================================================= -->
+
+<section class="barra-filtros-cursos">
+
+    <form id="form-filtros">
+
+        <div class="filtros-cursos-contenido">
+
+            <!-- Búsqueda -->
+
+            <div class="filtro-busqueda-principal">
+
+                <label
+                    for="filtro-busqueda"
+                    class="visually-hidden"
+                >
+                    Buscar cursos
+                </label>
+
+                <div class="campo-busqueda-cursos">
+
+                    <span class="icono-busqueda">
+                        &#128269;
+                    </span>
+
+                    <input
+                        type="search"
+                        id="filtro-busqueda"
+                        class="form-control"
+                        placeholder="Buscar cursos..."
+                        autocomplete="off"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- Área -->
+
+            <div class="filtro-area-superior">
+
+                <label
+                    for="filtro-area"
+                    class="visually-hidden"
+                >
+                    Área
+                </label>
+
+                <select
+                    id="filtro-area"
+                    class="form-select"
+                >
+                    <option value="">
+                        Todas las áreas
+                    </option>
+                </select>
+
+            </div>
+
+
+            <!-- Limpiar filtros -->
+
+            <button
+                type="button"
+                class="btn btn-limpiar-filtros"
+                id="boton-limpiar-filtros"
+            >
+                Limpiar
+            </button>
+
+        </div>
+
+    </form>
+
+</section>
+
+
+<!-- ========================================================
+MENSAJES
+========================================================= -->
+
+<div
+    id="mensaje-cursos"
+    class="d-none"
+></div>
+
+
+<!-- ========================================================
+CATÁLOGO
+========================================================= -->
+
+<section class="catalogo-layout">
+
+    <!-- ====================================================
+    PANEL LATERAL DE ÁREAS
+    ===================================================== -->
+
+    <aside class="panel-areas-cursos">
+
+        <div class="panel-areas-titulo">
+
+            <h2>
+                Áreas
+            </h2>
+
+            <span>
+                Filtrar cursos
+            </span>
+
+        </div>
+
+
+        <div
+            id="contenedor-areas"
+            class="lista-areas-cursos"
+        >
+
+            <span class="text-muted">
+                Cargando áreas...
+            </span>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ====================================================
+    RESULTADOS
+    ===================================================== -->
+
+    <div class="catalogo-resultados">
+
+        <div class="encabezado-resultados">
+
+            <div>
+
+                <span class="hero-etiqueta">
+                    CATÁLOGO
+                </span>
+
+                <h2>
+                    Cursos disponibles
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <div id="contenedor-cursos">
+
+            <p class="text-muted">
+                Cargando cursos...
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<script src="/static/js/cursos.js"></script>
+
+{% endblock %}

@@ -1,0 +1,310 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+Carro de Matrícula | Plataforma EdTech
+{% endblock %}
+
+
+{% block content %}
+
+<!--
+============================================================
+CARRO DE MATRÍCULA - EDTECH
+============================================================
+
+Esta página permite al estudiante revisar los cursos
+guardados en su carro persistente antes de generar
+una matrícula.
+
+La confirmación crea la matrícula correspondiente.
+El proceso de pago se gestiona posteriormente.
+============================================================
+-->
+
+
+<!-- ========================================================
+ENCABEZADO
+========================================================= -->
+
+<section class="encabezado-carro">
+
+    <div>
+
+        <span class="hero-etiqueta">
+            MATRÍCULA
+        </span>
+
+        <h1>
+            Revisa tu selección
+        </h1>
+
+        <p>
+            Verifica los cursos agregados antes de
+            confirmar tu matrícula.
+        </p>
+
+    </div>
+
+
+    <a
+        href="/cursos/"
+        class="enlace-seguir-explorando"
+    >
+        ← Seguir explorando cursos
+    </a>
+
+</section>
+
+
+
+<!-- ========================================================
+PROGRESO DEL PROCESO
+========================================================= -->
+
+<section class="progreso-matricula">
+
+    <div class="paso-matricula paso-activo">
+
+        <span class="paso-numero">
+            1
+        </span>
+
+        <div>
+            <strong>
+                Carro
+            </strong>
+
+            <span>
+                Revisa tus cursos
+            </span>
+        </div>
+
+    </div>
+
+
+    <div class="paso-linea"></div>
+
+
+    <div class="paso-matricula">
+
+        <span class="paso-numero">
+            2
+        </span>
+
+        <div>
+            <strong>
+                Matrícula
+            </strong>
+
+            <span>
+                Confirma tu selección
+            </span>
+        </div>
+
+    </div>
+
+
+    <div class="paso-linea"></div>
+
+
+    <div class="paso-matricula">
+
+        <span class="paso-numero">
+            3
+        </span>
+
+        <div>
+            <strong>
+                Pago
+            </strong>
+
+            <span>
+                Realiza el pago simulado
+            </span>
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ========================================================
+MENSAJES
+========================================================= -->
+
+<div
+    id="mensaje-carro"
+    class="d-none"
+    role="alert"
+>
+</div>
+
+
+
+<!-- ========================================================
+CONTENIDO PRINCIPAL
+========================================================= -->
+
+<section class="carro-layout">
+
+
+    <!-- ====================================================
+    CURSOS SELECCIONADOS
+    ===================================================== -->
+
+    <div class="carro-productos">
+
+        <div class="carro-seccion-encabezado">
+
+            <div>
+
+                <span class="hero-etiqueta">
+                    TU SELECCIÓN
+                </span>
+
+                <h2>
+                    Cursos seleccionados
+                </h2>
+
+                <p>
+                    Puedes eliminar un curso mientras
+                    la matrícula no haya sido confirmada.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Contenido generado por carro.js -->
+
+        <div id="contenedor-carro">
+
+            <div class="carro-cargando">
+
+                <div
+                    class="spinner-border spinner-border-sm"
+                    role="status"
+                >
+                    <span class="visually-hidden">
+                        Cargando...
+                    </span>
+                </div>
+
+                <span>
+                    Cargando carro...
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ====================================================
+    RESUMEN
+    ===================================================== -->
+
+    <aside class="resumen-carro">
+
+        <div class="resumen-carro-tarjeta">
+
+            <span class="hero-etiqueta">
+                RESUMEN
+            </span>
+
+            <h2>
+                Tu matrícula
+            </h2>
+
+
+            <div class="resumen-carro-fila">
+
+                <span>
+                    Cursos seleccionados
+                </span>
+
+                <strong id="cantidad-cursos">
+                    0
+                </strong>
+
+            </div>
+
+
+            <div class="resumen-carro-separador"></div>
+
+
+            <div class="resumen-carro-total">
+
+                <div>
+
+                    <span>
+                        Total
+                    </span>
+
+                    <small>
+                        Valor de matrícula
+                    </small>
+
+                </div>
+
+
+                <strong id="total-carro">
+                    $0
+                </strong>
+
+            </div>
+
+
+            <button
+                type="button"
+                id="boton-confirmar-matricula"
+                class="btn btn-primary w-100"
+                disabled
+            >
+                Confirmar matrícula
+            </button>
+
+
+            <a
+                href="/cursos/"
+                class="btn btn-outline-edtech w-100 mt-2"
+            >
+                Seguir explorando
+            </a>
+
+
+            <div class="resumen-carro-aviso">
+
+                <span class="resumen-aviso-icono">
+                    i
+                </span>
+
+                <p>
+                    Confirmar la matrícula no realiza
+                    todavía el pago. El pago se gestiona
+                    en el siguiente paso.
+                </p>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+</section>
+
+{% endblock %}
+
+
+
+{% block scripts %}
+
+<script src="{% static 'js/carro.js' %}"></script>
+
+{% endblock %}

@@ -1,0 +1,199 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block title %}
+Mis Matrículas | Plataforma EdTech
+{% endblock %}
+
+
+{% block content %}
+
+<!--
+============================================================
+MIS MATRÍCULAS - EDTECH
+============================================================
+
+Historial académico del estudiante.
+
+Permite consultar las matrículas realizadas, sus cursos,
+el estado de la matrícula y el estado del pago simulado.
+============================================================
+-->
+
+
+<section class="pagina-matriculas">
+
+
+    <!-- ====================================================
+    ENCABEZADO
+    ===================================================== -->
+
+    <section class="encabezado-carro">
+
+        <div>
+
+            <span class="hero-etiqueta">
+                HISTORIAL ACADÉMICO
+            </span>
+
+            <h1>
+                Mis Matrículas
+            </h1>
+
+            <p>
+                Consulta tus matrículas, revisa su estado
+                y continúa con los pagos que tengas pendientes.
+            </p>
+
+        </div>
+
+
+        <a
+            href="/cursos/"
+            class="enlace-seguir-explorando"
+        >
+            Explorar cursos →
+        </a>
+
+    </section>
+
+
+
+    <!-- ====================================================
+    MENSAJES
+    ===================================================== -->
+
+    <div
+        id="mensaje-matriculas"
+        class="d-none"
+        role="alert"
+    ></div>
+
+
+
+    <!-- ====================================================
+    ESTADOS DE LA MATRÍCULA
+    ===================================================== -->
+
+    <section class="tarjeta-estados-matricula">
+
+        <div class="estado-leyenda">
+
+            <span class="punto-estado pendiente"></span>
+
+            <span>
+                Pendiente
+            </span>
+
+        </div>
+
+
+        <div class="estado-leyenda">
+
+            <span class="punto-estado pagado"></span>
+
+            <span>
+                Pagado
+            </span>
+
+        </div>
+
+
+        <div class="estado-leyenda">
+
+            <span class="punto-estado completado"></span>
+
+            <span>
+                Completado
+            </span>
+
+        </div>
+
+
+        <div class="estado-leyenda">
+
+            <span class="punto-estado cancelado"></span>
+
+            <span>
+                Cancelado
+            </span>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ====================================================
+    HISTORIAL
+    ===================================================== -->
+
+    <section class="seccion-historial-matriculas">
+
+        <div class="titulo-historial-matriculas">
+
+            <div>
+
+                <span class="hero-etiqueta">
+                    MATRÍCULAS
+                </span>
+
+                <h2>
+                    Tu historial
+                </h2>
+
+                <p>
+                    Revisa el detalle y estado de tus
+                    matrículas realizadas.
+                </p>
+
+            </div>
+
+
+            <span
+                id="cantidad-matriculas"
+                class="cantidad-matriculas"
+            >
+                0 matrículas
+            </span>
+
+        </div>
+
+
+        <!-- Contenido generado por mis_matriculas.js -->
+
+        <div id="contenedor-matriculas">
+
+            <div class="matriculas-cargando">
+
+                <div
+                    class="spinner-border spinner-border-sm"
+                    role="status"
+                >
+                    <span class="visually-hidden">
+                        Cargando...
+                    </span>
+                </div>
+
+                <span>
+                    Cargando matrículas...
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</section>
+
+{% endblock %}
+
+
+
+{% block scripts %}
+
+<script src="{% static 'js/mis_matriculas.js' %}"></script>
+
+{% endblock %}

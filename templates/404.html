@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Página no encontrada | EdTech
+{% endblock %}
+
+{% block content %}
+
+<!--
+============================================================
+ERROR 404 - PLATAFORMA EDTECH
+============================================================
+
+Página personalizada que se muestra cuando el usuario intenta
+acceder a una dirección que no existe dentro de la plataforma.
+============================================================
+-->
+
+<section class="error-404">
+
+    <!-- ILUSTRACIÓN -->
+    <div class="error-404-ilustracion">
+
+        <div class="error-404-fondo"></div>
+
+        <div class="error-404-ventana">
+
+            <div class="error-404-barra">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <strong>404</strong>
+
+        </div>
+
+        <div class="error-404-libros">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <div class="error-404-lupa">
+            <div></div>
+        </div>
+
+        <div class="error-404-avion">
+            ➤
+        </div>
+
+    </div>
+
+
+    <!-- INFORMACIÓN -->
+    <div class="error-404-contenido">
+
+        <span class="hero-etiqueta">
+            PLATAFORMA EDTECH
+        </span>
+
+        <h1>
+            Esta ruta no está disponible
+        </h1>
+
+        <p>
+            La página que buscas no existe o ha sido movida.
+            <br>
+            Puedes volver al inicio o continuar navegando
+            en la plataforma.
+        </p>
+
+
+        <div class="error-404-acciones">
+
+            <a
+                href="{% url 'home' %}"
+                class="btn btn-primary"
+            >
+                ⌂&nbsp;&nbsp; Volver al inicio
+            </a>
+
+            <button
+                type="button"
+                class="btn btn-outline-edtech"
+                onclick="history.back()"
+            >
+                ←&nbsp;&nbsp; Volver atrás
+            </button>
+
+        </div>
+
+
+        <div class="error-404-pie">
+
+            <span>
+                Error 404
+            </span>
+
+            <small>
+                Página no encontrada
+            </small>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

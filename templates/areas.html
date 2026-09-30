@@ -1,0 +1,203 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}
+Áreas | Plataforma EdTech
+{% endblock %}
+
+
+{% block content %}
+
+<!--
+============================================================
+ÁREAS ACADÉMICAS - EDTECH
+============================================================
+
+Esta página presenta las áreas académicas disponibles
+en la plataforma.
+
+Las áreas y sus cursos se obtienen desde la API, evitando
+utilizar información escrita manualmente en el template.
+============================================================
+-->
+
+
+<!-- ========================================================
+HERO
+========================================================= -->
+
+<section class="hero-areas">
+
+    <div class="row align-items-center g-4">
+
+        <div class="col-lg-8">
+
+            <span class="hero-etiqueta">
+                ÁREAS ACADÉMICAS
+            </span>
+
+            <h1>
+                Encuentra el área que
+                <span>más te interesa</span>
+            </h1>
+
+            <p>
+                Explora las distintas áreas de formación
+                disponibles y descubre los cursos y bootcamps
+                asociados a cada una.
+            </p>
+
+        </div>
+
+
+        <div class="col-lg-4 d-none d-lg-flex justify-content-center">
+
+            <div class="areas-hero-imagen">
+
+                <img
+                    src="{% static 'img/hero-areas.png' %}"
+                    alt="Explora las áreas académicas disponibles"
+                >
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ========================================================
+ENCABEZADO Y BÚSQUEDA
+========================================================= -->
+
+<section class="seccion-areas">
+
+    <div class="encabezado-areas">
+
+        <div>
+
+            <span class="hero-etiqueta">
+                EXPLORAR
+            </span>
+
+            <h2>
+                Todas las áreas
+            </h2>
+
+            <p>
+                Selecciona un área para conocer su oferta
+                de cursos disponibles.
+            </p>
+
+        </div>
+
+
+        <div class="buscador-areas">
+
+            <label
+                for="buscar-area"
+                class="visually-hidden"
+            >
+                Buscar área
+            </label>
+
+            <input
+                type="search"
+                id="buscar-area"
+                class="form-control"
+                placeholder="Buscar área..."
+                autocomplete="off"
+            >
+
+        </div>
+
+    </div>
+
+
+    <!-- ====================================================
+    MENSAJES
+    ===================================================== -->
+
+    <div
+        id="mensaje-areas"
+        class="alert d-none"
+        role="alert"
+    >
+    </div>
+
+
+    <!-- ====================================================
+    CONTENEDOR DINÁMICO
+    ===================================================== -->
+
+    <div
+        id="contenedor-areas-pagina"
+        class="grid-areas"
+    >
+
+        <div class="areas-cargando">
+
+            <div
+                class="spinner-border spinner-border-sm"
+                role="status"
+            >
+                <span class="visually-hidden">
+                    Cargando...
+                </span>
+            </div>
+
+            <span>
+                Cargando áreas...
+            </span>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- ========================================================
+LLAMADO FINAL
+========================================================= -->
+
+<section class="cta-areas">
+
+    <div>
+
+        <span class="hero-etiqueta">
+            OFERTA ACADÉMICA
+        </span>
+
+        <h2>
+            ¿Quieres ver todos los cursos?
+        </h2>
+
+        <p>
+            Revisa el catálogo completo y encuentra
+            una alternativa que se ajuste a tus intereses.
+        </p>
+
+    </div>
+
+
+    <a
+        href="/cursos/"
+        class="btn btn-primary"
+    >
+        Ver todos los cursos
+    </a>
+
+</section>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<script src="{% static 'js/areas.js' %}"></script>
+
+{% endblock %}

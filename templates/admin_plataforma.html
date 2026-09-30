@@ -1,0 +1,857 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Administración | Plataforma EdTech
+{% endblock %}
+
+{% block navbar %}
+{% endblock %}
+
+
+{% block content %}
+
+<!--
+============================================================
+PANEL DE ADMINISTRACIÓN - EDTECH
+============================================================
+
+EXTENSIÓN ADICIONAL.
+
+Panel independiente para el Administrador General.
+
+Permite:
+1. Consultar estadísticas reales de la plataforma.
+2. Gestionar Coordinadores Académicos.
+3. Acceder a la documentación Swagger / OpenAPI.
+
+La autorización real permanece controlada por el backend.
+============================================================
+-->
+
+
+<div class="admin-layout">
+
+
+    <!-- =====================================================
+    MENÚ LATERAL
+    ====================================================== -->
+
+    <aside class="admin-sidebar">
+
+        <!-- Marca -->
+
+        <div class="admin-sidebar-marca">
+
+            <div class="admin-sidebar-logo">
+                E
+            </div>
+
+            <div>
+
+                <strong>
+                    EdTech
+                </strong>
+
+                <span>
+                    Administración
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- Navegación -->
+
+        <nav class="admin-sidebar-menu">
+
+            <span class="admin-menu-titulo">
+                PLATAFORMA
+            </span>
+
+
+            <!-- Dashboard -->
+
+            <button
+                type="button"
+                class="admin-menu-item activo"
+                id="admin-menu-dashboard"
+            >
+
+                <span class="admin-menu-icono">
+                    ▣
+                </span>
+
+                <span>
+                    Dashboard
+                </span>
+
+            </button>
+
+
+            <!-- Coordinadores -->
+
+            <button
+                type="button"
+                class="admin-menu-item"
+                id="admin-menu-coordinadores"
+            >
+
+                <span class="admin-menu-icono">
+                    ♟
+                </span>
+
+                <span>
+                    Coordinadores
+                </span>
+
+            </button>
+
+
+            <!-- Desarrollo -->
+
+            <span class="admin-menu-titulo admin-menu-titulo-separado">
+                DESARROLLO
+            </span>
+
+
+            <!-- Swagger -->
+
+            <a
+                href="/api/docs/"
+                target="_blank"
+                class="admin-menu-item"
+            >
+
+                <span class="admin-menu-icono">
+                    &lt;/&gt;
+                </span>
+
+                <span>
+                    API Docs
+                </span>
+
+            </a>
+
+        </nav>
+
+
+        <!-- Información inferior -->
+
+        <div class="admin-sidebar-inferior">
+
+            <span>
+                Plataforma EdTech
+            </span>
+
+            <small>
+                Administración General
+            </small>
+
+        </div>
+
+    </aside>
+
+
+    <!-- =====================================================
+    CONTENIDO
+    ====================================================== -->
+
+    <main class="admin-contenido">
+
+        <!-- =====================================================
+        BARRA SUPERIOR DEL PANEL ADMIN
+        ====================================================== -->
+
+        <header class="admin-barra-superior">
+
+            <div class="admin-barra-titulo">
+                Panel Administrador
+            </div>
+
+
+            <!-- Perfil del administrador -->
+
+            <div class="admin-perfil-dropdown">
+
+                <button
+                    type="button"
+                    class="admin-perfil-boton"
+                    id="admin-perfil-boton"
+                    aria-expanded="false"
+                >
+
+                    <span class="admin-perfil-avatar">
+                        ♟
+                    </span>
+
+
+                    <span class="admin-perfil-informacion">
+
+                        <strong id="admin-nombre-usuario">
+                            admin
+                        </strong>
+
+                        <small>
+                            Administrador General
+                        </small>
+
+                    </span>
+
+
+                    <span class="admin-perfil-flecha">
+                        ▾
+                    </span>
+
+                </button>
+
+
+                <!-- Menú desplegable -->
+
+                <div
+                    class="admin-perfil-menu-personalizado d-none"
+                    id="admin-perfil-menu"
+                >
+
+                    <div class="admin-perfil-menu-cabecera">
+
+                        <span class="admin-perfil-menu-avatar">
+                            ♟
+                        </span>
+
+                        <div>
+
+                            <strong id="admin-menu-nombre">
+                                admin
+                            </strong>
+
+                            <small>
+                                Administrador General
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="admin-perfil-separador"></div>
+
+
+                    <button
+                        type="button"
+                        class="admin-cerrar-sesion"
+                        id="admin-boton-logout"
+                    >
+                        <span>
+                            ↪
+                        </span>
+
+                        Cerrar sesión
+                    </button>
+
+                </div>
+
+            </div>
+
+        </header>
+
+
+        <div class="admin-principal">
+
+
+            <!-- =================================================
+            MENSAJES
+            ================================================== -->
+
+            <div
+                id="mensaje-admin"
+                class="d-none mb-4"
+            ></div>
+
+
+            <!-- =================================================
+            DASHBOARD
+            ================================================== -->
+
+            <section
+                id="admin-seccion-dashboard"
+                class="admin-seccion"
+            >
+
+
+                <!-- Encabezado -->
+
+                <div class="admin-pagina-encabezado">
+
+                    <span class="hero-etiqueta">
+                        ADMINISTRACIÓN GENERAL
+                    </span>
+
+                    <h1>
+                        Panel de Administración
+                    </h1>
+
+                    <p>
+                        Resumen general de la actividad de la
+                        plataforma EdTech.
+                    </p>
+
+                </div>
+
+
+                <!-- =============================================
+                MÉTRICAS REALES
+                ============================================== -->
+
+                <div class="admin-metricas">
+
+
+                    <!-- Estudiantes -->
+
+                    <article class="admin-metrica">
+
+                        <div class="admin-metrica-superior">
+
+                            <span>
+                                Estudiantes
+                            </span>
+
+                            <div class="admin-metrica-icono">
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="9" cy="7" r="4"></circle>
+                                    <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                </svg>
+                            </div>
+
+                        </div>
+
+                        <strong
+                            id="total-estudiantes"
+                            class="admin-metrica-numero"
+                        >
+                            0
+                        </strong>
+
+                        <small>
+                            Usuarios registrados
+                        </small>
+
+                    </article>
+
+
+                    <!-- Coordinadores -->
+
+                    <article class="admin-metrica">
+
+                        <div class="admin-metrica-superior">
+
+                            <span>
+                                Coordinadores
+                            </span>
+
+                            <div class="admin-metrica-icono">
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M20 21a8 8 0 0 0-16 0"></path>
+                                    <circle cx="12" cy="7" r="4"></circle>
+                                </svg>
+                            </div>
+
+                        </div>
+
+                        <strong
+                            id="total-coordinadores"
+                            class="admin-metrica-numero"
+                        >
+                            0
+                        </strong>
+
+                        <small>
+                            Cuentas activas
+                        </small>
+
+                    </article>
+
+
+                    <!-- Cursos -->
+
+                    <article class="admin-metrica">
+
+                        <div class="admin-metrica-superior">
+
+                            <span>
+                                Cursos
+                            </span>
+
+                            <div class="admin-metrica-icono">
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                                    <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+                                </svg>
+                            </div>
+
+                        </div>
+
+                        <strong
+                            id="total-cursos"
+                            class="admin-metrica-numero"
+                        >
+                            0
+                        </strong>
+
+                        <small>
+                            Oferta académica
+                        </small>
+
+                    </article>
+
+
+                    <!-- Matrículas -->
+
+                    <article class="admin-metrica">
+
+                        <div class="admin-metrica-superior">
+
+                            <span>
+                                Matrículas
+                            </span>
+
+                            <div class="admin-metrica-icono">
+                                <svg viewBox="0 0 24 24" aria-hidden="true">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                    <polyline points="14 2 14 8 20 8"></polyline>
+                                    <line x1="8" y1="13" x2="16" y2="13"></line>
+                                    <line x1="8" y1="17" x2="16" y2="17"></line>
+                                </svg>
+                            </div>
+
+                        </div>
+
+                        <strong
+                            id="total-matriculas-admin"
+                            class="admin-metrica-numero"
+                        >
+                            0
+                        </strong>
+
+                        <small>
+                            Registros históricos
+                        </small>
+
+                    </article>
+
+                </div>
+
+
+                <!-- =============================================
+                INDICADORES REALES
+                ============================================== -->
+
+                <div class="admin-indicadores">
+
+
+                    <!-- Cursos con más matrículas -->
+
+                    <article class="admin-panel">
+
+                        <div class="admin-panel-encabezado">
+
+                            <span class="hero-etiqueta">
+                                ACTIVIDAD
+                            </span>
+
+                            <h2>
+                                Cursos con más matrículas
+                            </h2>
+
+                            <p>
+                                Cursos con mayor cantidad de
+                                registros de matrícula.
+                            </p>
+
+                        </div>
+
+
+                        <div
+                            id="cursos-populares"
+                            class="admin-ranking"
+                        >
+
+                            <p class="text-muted mb-0">
+                                Cargando información...
+                            </p>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- Áreas de mayor interés -->
+
+                    <article class="admin-panel">
+
+                        <div class="admin-panel-encabezado">
+
+                            <span class="hero-etiqueta">
+                                INTERÉS ACADÉMICO
+                            </span>
+
+                            <h2>
+                                Áreas de mayor interés
+                            </h2>
+
+                            <p>
+                                Distribución según las matrículas
+                                registradas en sus cursos.
+                            </p>
+
+                        </div>
+
+
+                        <div
+                            id="areas-populares"
+                            class="admin-ranking"
+                        >
+
+                            <p class="text-muted mb-0">
+                                Cargando información...
+                            </p>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+            GESTIÓN DE COORDINADORES
+            ================================================== -->
+
+            <section
+                id="admin-seccion-coordinadores"
+                class="admin-seccion d-none"
+            >
+
+
+                <!-- Encabezado -->
+
+                <div class="admin-pagina-encabezado admin-encabezado-flex">
+
+                    <div>
+
+                        <span class="hero-etiqueta">
+                            USUARIOS
+                        </span>
+
+                        <h1>
+                            Coordinadores Académicos
+                        </h1>
+
+                        <p>
+                            Administra las cuentas con acceso a
+                            la gestión académica de la plataforma.
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        id="boton-nuevo-coordinador"
+                    >
+                        + Nuevo coordinador
+                    </button>
+
+                </div>
+
+
+                <!-- =============================================
+                FORMULARIO
+                ============================================== -->
+
+                <div
+                    class="admin-formulario-contenedor d-none"
+                    id="contenedor-form-coordinador"
+                >
+
+                    <div class="admin-formulario-cabecera">
+
+                        <div>
+
+                            <h2 id="titulo-formulario-coordinador">
+                                Nuevo Coordinador
+                            </h2>
+
+                            <p>
+                                Completa los datos de la cuenta.
+                            </p>
+
+                        </div>
+
+
+                        <button
+                            type="button"
+                            class="admin-formulario-cerrar"
+                            id="boton-cerrar-form-coordinador"
+                            aria-label="Cerrar formulario"
+                        >
+                            ×
+                        </button>
+
+                    </div>
+
+
+                    <form id="form-coordinador">
+
+                        <input
+                            type="hidden"
+                            id="coordinador-id"
+                        >
+
+
+                        <div class="admin-formulario-grid">
+
+
+                            <!-- Nombre -->
+
+                            <div>
+
+                                <label
+                                    for="coordinador-first-name"
+                                    class="form-label"
+                                >
+                                    Nombre
+                                </label>
+
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="coordinador-first-name"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <!-- Apellido -->
+
+                            <div>
+
+                                <label
+                                    for="coordinador-last-name"
+                                    class="form-label"
+                                >
+                                    Apellido
+                                </label>
+
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="coordinador-last-name"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <!-- Usuario -->
+
+                            <div>
+
+                                <label
+                                    for="coordinador-username"
+                                    class="form-label"
+                                >
+                                    Usuario
+                                </label>
+
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="coordinador-username"
+                                    autocomplete="off"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <!-- Correo -->
+
+                            <div>
+
+                                <label
+                                    for="coordinador-email"
+                                    class="form-label"
+                                >
+                                    Correo electrónico
+                                </label>
+
+                                <input
+                                    type="email"
+                                    class="form-control"
+                                    id="coordinador-email"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <!-- Contraseña -->
+
+                            <div class="admin-formulario-password">
+
+                                <label
+                                    for="coordinador-password"
+                                    class="form-label"
+                                >
+                                    Contraseña
+                                </label>
+
+                                <input
+                                    type="password"
+                                    class="form-control"
+                                    id="coordinador-password"
+                                    autocomplete="new-password"
+                                >
+
+                                <small
+                                    id="ayuda-password-coordinador"
+                                    class="text-muted"
+                                >
+                                    Obligatoria al crear un coordinador.
+                                </small>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Acciones -->
+
+                        <div class="admin-formulario-acciones">
+
+                            <button
+                                type="button"
+                                class="btn btn-outline-edtech"
+                                id="boton-cancelar-coordinador"
+                            >
+                                Cancelar
+                            </button>
+
+
+                            <button
+                                type="submit"
+                                class="btn btn-primary"
+                                id="boton-guardar-coordinador"
+                            >
+                                Crear Coordinador
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+
+                <!-- =============================================
+                TABLA DE COORDINADORES
+                ============================================== -->
+
+                <div class="admin-panel admin-tabla-panel">
+
+                    <div class="admin-tabla-encabezado">
+
+                        <div>
+
+                            <h2>
+                                Coordinadores registrados
+                            </h2>
+
+                            <p>
+                                Cuentas de coordinación académica
+                                de la plataforma.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="table-responsive">
+
+                        <table class="table align-middle mb-0">
+
+                            <thead>
+
+                                <tr>
+
+                                    <th>
+                                        Coordinador
+                                    </th>
+
+                                    <th>
+                                        Usuario
+                                    </th>
+
+                                    <th>
+                                        Correo
+                                    </th>
+
+                                    <th>
+                                        Estado
+                                    </th>
+
+                                    <th class="text-end columna-acciones">
+                                        Acciones
+                                    </th>
+
+                                </tr>
+
+                            </thead>
+
+
+                            <tbody id="tabla-coordinadores">
+
+                                <tr>
+
+                                    <td
+                                        colspan="5"
+                                        class="text-muted"
+                                    >
+                                        Cargando coordinadores...
+                                    </td>
+
+                                </tr>
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+</div>
+
+{% endblock %}
+
+
+{% block scripts %}
+
+<script src="{% static 'js/admin_plataforma.js' %}"></script>
+
+{% endblock %}

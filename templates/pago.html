@@ -1,0 +1,410 @@
+{% extends "base.html" %}
+{% load static %}
+
+
+{% block title %}
+Portal de Pago | EdTech
+{% endblock %}
+
+
+{% block content %}
+
+<!--
+============================================================
+PORTAL DE PAGO SIMULADO - EDTECH
+============================================================
+
+Permite al estudiante revisar el detalle de su matrícula,
+seleccionar un método de pago y enviar una solicitud de pago
+simulado para revisión del Coordinador Académico.
+
+No se solicitan ni almacenan datos bancarios reales.
+============================================================
+-->
+
+
+<!-- ========================================================
+ENCABEZADO
+========================================================= -->
+
+<section class="encabezado-carro">
+
+    <div>
+
+        <span class="hero-etiqueta">
+            PAGO
+        </span>
+
+        <h1>
+            Completa tu matrícula
+        </h1>
+
+        <p>
+            Revisa el detalle y selecciona un método
+            para realizar el pago simulado.
+        </p>
+
+    </div>
+
+
+    <a
+        href="/mis-matriculas/"
+        class="enlace-seguir-explorando"
+    >
+        Ver mis matrículas →
+    </a>
+
+</section>
+
+
+
+<!-- ========================================================
+PROGRESO DEL PROCESO
+========================================================= -->
+
+<section class="progreso-matricula">
+
+    <!-- Carro completado. -->
+
+    <div class="paso-matricula paso-completado">
+
+        <span class="paso-numero">
+            ✓
+        </span>
+
+        <div>
+            <strong>
+                Carro
+            </strong>
+
+            <span>
+                Revisa tus cursos
+            </span>
+        </div>
+
+    </div>
+
+
+    <div class="paso-linea paso-linea-completada"></div>
+
+
+    <!-- Matrícula completada. -->
+
+    <div class="paso-matricula paso-completado">
+
+        <span class="paso-numero">
+            ✓
+        </span>
+
+        <div>
+            <strong>
+                Matrícula
+            </strong>
+
+            <span>
+                Confirma tu selección
+            </span>
+        </div>
+
+    </div>
+
+
+    <div class="paso-linea paso-linea-completada"></div>
+
+
+    <!-- Pago: paso actual. -->
+
+    <div class="paso-matricula paso-activo">
+
+        <span class="paso-numero">
+            3
+        </span>
+
+        <div>
+            <strong>
+                Pago
+            </strong>
+
+            <span>
+                Realiza el pago simulado
+            </span>
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ========================================================
+MENSAJES
+========================================================= -->
+
+<div
+    id="mensaje-pago"
+    class="mb-4"
+    role="alert"
+>
+</div>
+
+
+
+<!-- ========================================================
+CONTENIDO PRINCIPAL
+========================================================= -->
+
+<section class="carro-layout">
+
+
+    <!-- ====================================================
+    DETALLE DE LA MATRÍCULA
+    ===================================================== -->
+
+    <div class="carro-productos">
+
+        <div class="carro-seccion-encabezado">
+
+            <div>
+
+                <span class="hero-etiqueta">
+                    TU MATRÍCULA
+                </span>
+
+                <h2>
+                    Cursos seleccionados
+                </h2>
+
+                <p>
+                    Revisa los cursos incluidos antes
+                    de realizar el pago simulado.
+                </p>
+
+            </div>
+
+
+            <span
+                id="numero-matricula"
+                class="numero-matricula"
+            >
+                Matrícula
+            </span>
+
+        </div>
+
+
+        <!-- Contenido generado por pago.js -->
+
+        <div
+            id="contenedor-detalle-pago"
+            class="contenedor-detalle-pago"
+        >
+
+            <div class="pago-cargando">
+
+                <div
+                    class="spinner-border spinner-border-sm"
+                    role="status"
+                >
+                    <span class="visually-hidden">
+                        Cargando...
+                    </span>
+                </div>
+
+                <span>
+                    Cargando matrícula...
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- ====================================================
+    RESUMEN Y MÉTODO DE PAGO
+    ===================================================== -->
+
+    <aside class="resumen-carro">
+
+        <div class="resumen-carro-tarjeta">
+
+            <span class="hero-etiqueta">
+                PAGO
+            </span>
+
+            <h2>
+                Método de pago
+            </h2>
+
+
+            <p class="texto-pago-simulado">
+                Selecciona una opción para realizar
+                el pago simulado.
+            </p>
+
+
+            <!-- ============================================
+            DÉBITO
+            ============================================= -->
+
+            <label class="opcion-pago">
+
+                <input
+                    type="radio"
+                    name="metodo-pago"
+                    value="DEBITO"
+                    id="pago-debito"
+                >
+
+                <span class="contenido-opcion-pago">
+
+                    <span class="icono-metodo-pago">
+                        D
+                    </span>
+
+                    <span>
+
+                        <strong>
+                            Débito
+                        </strong>
+
+                        <small>
+                            Pago simulado con tarjeta de débito
+                        </small>
+
+                    </span>
+
+                </span>
+
+            </label>
+
+
+            <!-- ============================================
+            CRÉDITO
+            ============================================= -->
+
+            <label class="opcion-pago">
+
+                <input
+                    type="radio"
+                    name="metodo-pago"
+                    value="CREDITO"
+                    id="pago-credito"
+                >
+
+                <span class="contenido-opcion-pago">
+
+                    <span class="icono-metodo-pago">
+                        C
+                    </span>
+
+                    <span>
+
+                        <strong>
+                            Crédito
+                        </strong>
+
+                        <small>
+                            Pago simulado con tarjeta de crédito
+                        </small>
+
+                    </span>
+
+                </span>
+
+            </label>
+
+
+
+            <!-- ============================================
+            TOTAL
+            ============================================= -->
+
+            <div class="resumen-carro-separador"></div>
+
+
+            <div class="resumen-carro-total">
+
+                <div>
+
+                    <span>
+                        Total
+                    </span>
+
+                    <small>
+                        Valor de matrícula
+                    </small>
+
+                </div>
+
+
+                <strong id="total-pago">
+                    $0
+                </strong>
+
+            </div>
+
+
+
+            <!-- ============================================
+            BOTÓN DE PAGO
+            ============================================= -->
+
+            <button
+                type="button"
+                id="boton-realizar-pago"
+                class="btn btn-primary w-100"
+                disabled
+            >
+                Realizar pago
+            </button>
+
+
+
+            <!-- ============================================
+            AVISO
+            ============================================= -->
+
+            <div class="resumen-carro-aviso">
+
+                <span class="resumen-aviso-icono">
+                    i
+                </span>
+
+                <p>
+                    Esta operación es una simulación académica.
+                    No ingreses números de tarjeta, claves ni
+                    información bancaria real.
+                </p>
+
+            </div>
+
+        </div>
+
+    </aside>
+
+</section>
+
+
+
+<!-- ========================================================
+DATOS UTILIZADOS POR JAVASCRIPT
+========================================================= -->
+
+<div
+    id="datos-pago"
+    data-matricula-id="{{ matricula_id }}"
+    hidden
+></div>
+
+{% endblock %}
+
+
+
+{% block scripts %}
+
+<script src="{% static 'js/pago.js' %}"></script>
+
+{% endblock %}

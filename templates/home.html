@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Inicio | Plataforma EdTech
+{% endblock %}
+
+{% block content %}
+
+<!--
+Página principal de la plataforma EdTech.
+
+Presenta el catálogo académico y las principales
+funcionalidades disponibles para los estudiantes.
+-->
+
+
+<!-- ========================================================
+HERO
+========================================================= -->
+
+<section class="hero-edtech text-center">
+
+    <span class="hero-etiqueta">
+        FORMACIÓN DIGITAL
+    </span>
+
+    <h1>
+        Impulsa tu aprendizaje
+        con nuevas habilidades
+    </h1>
+
+    <p class="lead mt-4">
+        Explora cursos y bootcamps orientados al desarrollo
+        de competencias académicas y tecnológicas.
+    </p>
+
+    <div class="mt-4">
+
+        <a
+            href="/cursos/"
+            class="btn btn-primary"
+        >
+            Explorar cursos
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- ========================================================
+FUNCIONALIDADES
+========================================================= -->
+
+<section class="seccion-informacion">
+
+    <div class="titulo-seccion text-center">
+
+        <h2>
+            Tu formación en un solo lugar
+        </h2>
+
+        <p>
+            Una plataforma sencilla para explorar,
+            seleccionar y gestionar tu aprendizaje.
+        </p>
+
+    </div>
+
+
+    <div class="row g-4">
+
+        <!-- Catálogo -->
+
+        <div class="col-md-4">
+
+            <div class="tarjeta-edtech">
+
+                <div class="tarjeta-numero">
+                    01
+                </div>
+
+                <h5>
+                    Explora el catálogo
+                </h5>
+
+                <p>
+                    Consulta cursos y bootcamps disponibles,
+                    sus áreas de conocimiento, fechas,
+                    costos y cupos.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Carro -->
+
+        <div class="col-md-4">
+
+            <div class="tarjeta-edtech">
+
+                <div class="tarjeta-numero">
+                    02
+                </div>
+
+                <h5>
+                    Organiza tu matrícula
+                </h5>
+
+                <p>
+                    Selecciona distintos cursos y mantenlos
+                    en tu carro persistente antes de
+                    confirmar la matrícula.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Matrículas -->
+
+        <div class="col-md-4">
+
+            <div class="tarjeta-edtech">
+
+                <div class="tarjeta-numero">
+                    03
+                </div>
+
+                <h5>
+                    Gestiona tu aprendizaje
+                </h5>
+
+                <p>
+                    Revisa tus matrículas y consulta
+                    fácilmente los cursos asociados
+                    a tu historial académico.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
